@@ -1,0 +1,164 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 2.541667 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "words" 
+        xmin = 0 
+        xmax = 2.541667 
+        intervals: size = 10 
+        intervals [1]:
+            xmin = 0.0 
+            xmax = 0.18 
+            text = "" 
+        intervals [2]:
+            xmin = 0.18 
+            xmax = 0.52 
+            text = "ब्याट" 
+        intervals [3]:
+            xmin = 0.52 
+            xmax = 0.64 
+            text = "" 
+        intervals [4]:
+            xmin = 0.64 
+            xmax = 0.65 
+            text = "र" 
+        intervals [5]:
+            xmin = 0.65 
+            xmax = 1.14 
+            text = "बलले" 
+        intervals [6]:
+            xmin = 1.14 
+            xmax = 1.61 
+            text = "खेल्ने" 
+        intervals [7]:
+            xmin = 1.61 
+            xmax = 1.68 
+            text = "" 
+        intervals [8]:
+            xmin = 1.68 
+            xmax = 1.98 
+            text = "टीम" 
+        intervals [9]:
+            xmin = 1.98 
+            xmax = 2.33 
+            text = "खेल" 
+        intervals [10]:
+            xmin = 2.33 
+            xmax = 2.541667 
+            text = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "phones" 
+        xmin = 0 
+        xmax = 2.541667 
+        intervals: size = 26 
+        intervals [1]:
+            xmin = 0.0 
+            xmax = 0.18 
+            text = "" 
+        intervals [2]:
+            xmin = 0.18 
+            xmax = 0.22 
+            text = "ब" 
+        intervals [3]:
+            xmin = 0.22 
+            xmax = 0.23 
+            text = "्" 
+        intervals [4]:
+            xmin = 0.23 
+            xmax = 0.24 
+            text = "य" 
+        intervals [5]:
+            xmin = 0.24 
+            xmax = 0.38 
+            text = "ा" 
+        intervals [6]:
+            xmin = 0.38 
+            xmax = 0.52 
+            text = "ट" 
+        intervals [7]:
+            xmin = 0.52 
+            xmax = 0.64 
+            text = "" 
+        intervals [8]:
+            xmin = 0.64 
+            xmax = 0.65 
+            text = "र" 
+        intervals [9]:
+            xmin = 0.65 
+            xmax = 0.93 
+            text = "ब" 
+        intervals [10]:
+            xmin = 0.93 
+            xmax = 0.94 
+            text = "ल" 
+        intervals [11]:
+            xmin = 0.94 
+            xmax = 0.95 
+            text = "ल" 
+        intervals [12]:
+            xmin = 0.95 
+            xmax = 1.14 
+            text = "े" 
+        intervals [13]:
+            xmin = 1.14 
+            xmax = 1.22 
+            text = "ख" 
+        intervals [14]:
+            xmin = 1.22 
+            xmax = 1.38 
+            text = "े" 
+        intervals [15]:
+            xmin = 1.38 
+            xmax = 1.39 
+            text = "ल" 
+        intervals [16]:
+            xmin = 1.39 
+            xmax = 1.4 
+            text = "्" 
+        intervals [17]:
+            xmin = 1.4 
+            xmax = 1.44 
+            text = "न" 
+        intervals [18]:
+            xmin = 1.44 
+            xmax = 1.61 
+            text = "े" 
+        intervals [19]:
+            xmin = 1.61 
+            xmax = 1.68 
+            text = "" 
+        intervals [20]:
+            xmin = 1.68 
+            xmax = 1.73 
+            text = "ट" 
+        intervals [21]:
+            xmin = 1.73 
+            xmax = 1.86 
+            text = "ी" 
+        intervals [22]:
+            xmin = 1.86 
+            xmax = 1.98 
+            text = "म" 
+        intervals [23]:
+            xmin = 1.98 
+            xmax = 2.1 
+            text = "ख" 
+        intervals [24]:
+            xmin = 2.1 
+            xmax = 2.32 
+            text = "े" 
+        intervals [25]:
+            xmin = 2.32 
+            xmax = 2.33 
+            text = "ल" 
+        intervals [26]:
+            xmin = 2.33 
+            xmax = 2.541667 
+            text = "" 

@@ -1,0 +1,300 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 4.089667 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "words" 
+        xmin = 0 
+        xmax = 4.089667 
+        intervals: size = 16 
+        intervals [1]:
+            xmin = 0.0 
+            xmax = 0.14 
+            text = "" 
+        intervals [2]:
+            xmin = 0.14 
+            xmax = 0.47 
+            text = "फोर्ड" 
+        intervals [3]:
+            xmin = 0.47 
+            xmax = 0.5 
+            text = "" 
+        intervals [4]:
+            xmin = 0.5 
+            xmax = 0.97 
+            text = "मोटरले" 
+        intervals [5]:
+            xmin = 0.97 
+            xmax = 1.02 
+            text = "" 
+        intervals [6]:
+            xmin = 1.02 
+            xmax = 1.31 
+            text = "दशैँ" 
+        intervals [7]:
+            xmin = 1.31 
+            xmax = 1.36 
+            text = "" 
+        intervals [8]:
+            xmin = 1.36 
+            xmax = 1.74 
+            text = "तिहारको" 
+        intervals [9]:
+            xmin = 1.74 
+            xmax = 2.05 
+            text = "अवसर" 
+        intervals [10]:
+            xmin = 2.05 
+            xmax = 2.19 
+            text = "" 
+        intervals [11]:
+            xmin = 2.19 
+            xmax = 2.48 
+            text = "पारेर" 
+        intervals [12]:
+            xmin = 2.48 
+            xmax = 3.05 
+            text = "सञ्चालन" 
+        intervals [13]:
+            xmin = 3.05 
+            xmax = 3.08 
+            text = "" 
+        intervals [14]:
+            xmin = 3.08 
+            xmax = 3.45 
+            text = "गरेको" 
+        intervals [15]:
+            xmin = 3.45 
+            xmax = 3.94 
+            text = "थियो" 
+        intervals [16]:
+            xmin = 3.94 
+            xmax = 4.089667 
+            text = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "phones" 
+        xmin = 0 
+        xmax = 4.089667 
+        intervals: size = 54 
+        intervals [1]:
+            xmin = 0.0 
+            xmax = 0.14 
+            text = "" 
+        intervals [2]:
+            xmin = 0.14 
+            xmax = 0.31 
+            text = "फ" 
+        intervals [3]:
+            xmin = 0.31 
+            xmax = 0.42 
+            text = "ो" 
+        intervals [4]:
+            xmin = 0.42 
+            xmax = 0.43 
+            text = "र" 
+        intervals [5]:
+            xmin = 0.43 
+            xmax = 0.44 
+            text = "्" 
+        intervals [6]:
+            xmin = 0.44 
+            xmax = 0.47 
+            text = "ड" 
+        intervals [7]:
+            xmin = 0.47 
+            xmax = 0.5 
+            text = "" 
+        intervals [8]:
+            xmin = 0.5 
+            xmax = 0.61 
+            text = "म" 
+        intervals [9]:
+            xmin = 0.61 
+            xmax = 0.67 
+            text = "ो" 
+        intervals [10]:
+            xmin = 0.67 
+            xmax = 0.76 
+            text = "ट" 
+        intervals [11]:
+            xmin = 0.76 
+            xmax = 0.77 
+            text = "र" 
+        intervals [12]:
+            xmin = 0.77 
+            xmax = 0.88 
+            text = "ल" 
+        intervals [13]:
+            xmin = 0.88 
+            xmax = 0.97 
+            text = "े" 
+        intervals [14]:
+            xmin = 0.97 
+            xmax = 1.02 
+            text = "" 
+        intervals [15]:
+            xmin = 1.02 
+            xmax = 1.13 
+            text = "द" 
+        intervals [16]:
+            xmin = 1.13 
+            xmax = 1.25 
+            text = "श" 
+        intervals [17]:
+            xmin = 1.25 
+            xmax = 1.3 
+            text = "ै" 
+        intervals [18]:
+            xmin = 1.3 
+            xmax = 1.31 
+            text = "ँ" 
+        intervals [19]:
+            xmin = 1.31 
+            xmax = 1.36 
+            text = "" 
+        intervals [20]:
+            xmin = 1.36 
+            xmax = 1.41 
+            text = "त" 
+        intervals [21]:
+            xmin = 1.41 
+            xmax = 1.46 
+            text = "ि" 
+        intervals [22]:
+            xmin = 1.46 
+            xmax = 1.52 
+            text = "ह" 
+        intervals [23]:
+            xmin = 1.52 
+            xmax = 1.57 
+            text = "ा" 
+        intervals [24]:
+            xmin = 1.57 
+            xmax = 1.58 
+            text = "र" 
+        intervals [25]:
+            xmin = 1.58 
+            xmax = 1.67 
+            text = "क" 
+        intervals [26]:
+            xmin = 1.67 
+            xmax = 1.74 
+            text = "ो" 
+        intervals [27]:
+            xmin = 1.74 
+            xmax = 1.84 
+            text = "अ" 
+        intervals [28]:
+            xmin = 1.84 
+            xmax = 1.92 
+            text = "व" 
+        intervals [29]:
+            xmin = 1.92 
+            xmax = 2.04 
+            text = "स" 
+        intervals [30]:
+            xmin = 2.04 
+            xmax = 2.05 
+            text = "र" 
+        intervals [31]:
+            xmin = 2.05 
+            xmax = 2.19 
+            text = "" 
+        intervals [32]:
+            xmin = 2.19 
+            xmax = 2.25 
+            text = "प" 
+        intervals [33]:
+            xmin = 2.25 
+            xmax = 2.35 
+            text = "ा" 
+        intervals [34]:
+            xmin = 2.35 
+            xmax = 2.36 
+            text = "र" 
+        intervals [35]:
+            xmin = 2.36 
+            xmax = 2.47 
+            text = "े" 
+        intervals [36]:
+            xmin = 2.47 
+            xmax = 2.48 
+            text = "र" 
+        intervals [37]:
+            xmin = 2.48 
+            xmax = 2.66 
+            text = "स" 
+        intervals [38]:
+            xmin = 2.66 
+            xmax = 2.76 
+            text = "ञ" 
+        intervals [39]:
+            xmin = 2.76 
+            xmax = 2.77 
+            text = "्" 
+        intervals [40]:
+            xmin = 2.77 
+            xmax = 2.83 
+            text = "च" 
+        intervals [41]:
+            xmin = 2.83 
+            xmax = 2.93 
+            text = "ा" 
+        intervals [42]:
+            xmin = 2.93 
+            xmax = 2.94 
+            text = "ल" 
+        intervals [43]:
+            xmin = 2.94 
+            xmax = 3.05 
+            text = "न" 
+        intervals [44]:
+            xmin = 3.05 
+            xmax = 3.08 
+            text = "" 
+        intervals [45]:
+            xmin = 3.08 
+            xmax = 3.22 
+            text = "ग" 
+        intervals [46]:
+            xmin = 3.22 
+            xmax = 3.23 
+            text = "र" 
+        intervals [47]:
+            xmin = 3.23 
+            xmax = 3.31 
+            text = "े" 
+        intervals [48]:
+            xmin = 3.31 
+            xmax = 3.37 
+            text = "क" 
+        intervals [49]:
+            xmin = 3.37 
+            xmax = 3.45 
+            text = "ो" 
+        intervals [50]:
+            xmin = 3.45 
+            xmax = 3.58 
+            text = "थ" 
+        intervals [51]:
+            xmin = 3.58 
+            xmax = 3.68 
+            text = "ि" 
+        intervals [52]:
+            xmin = 3.68 
+            xmax = 3.69 
+            text = "य" 
+        intervals [53]:
+            xmin = 3.69 
+            xmax = 3.94 
+            text = "ो" 
+        intervals [54]:
+            xmin = 3.94 
+            xmax = 4.089667 
+            text = "" 

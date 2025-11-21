@@ -1,0 +1,164 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 3.029333 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "words" 
+        xmin = 0 
+        xmax = 3.029333 
+        intervals: size = 7 
+        intervals [1]:
+            xmin = 0.0 
+            xmax = 0.17 
+            text = "" 
+        intervals [2]:
+            xmin = 0.17 
+            xmax = 0.87 
+            text = "वासिङटन" 
+        intervals [3]:
+            xmin = 0.87 
+            xmax = 1.5 
+            text = "डिसीको" 
+        intervals [4]:
+            xmin = 1.5 
+            xmax = 1.53 
+            text = "" 
+        intervals [5]:
+            xmin = 1.53 
+            xmax = 2.36 
+            text = "उच्चवृद्धि" 
+        intervals [6]:
+            xmin = 2.36 
+            xmax = 2.81 
+            text = "भवन" 
+        intervals [7]:
+            xmin = 2.81 
+            xmax = 3.029333 
+            text = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "phones" 
+        xmin = 0 
+        xmax = 3.029333 
+        intervals: size = 29 
+        intervals [1]:
+            xmin = 0.0 
+            xmax = 0.17 
+            text = "" 
+        intervals [2]:
+            xmin = 0.17 
+            xmax = 0.26 
+            text = "व" 
+        intervals [3]:
+            xmin = 0.26 
+            xmax = 0.33 
+            text = "ा" 
+        intervals [4]:
+            xmin = 0.33 
+            xmax = 0.45 
+            text = "स" 
+        intervals [5]:
+            xmin = 0.45 
+            xmax = 0.51 
+            text = "ि" 
+        intervals [6]:
+            xmin = 0.51 
+            xmax = 0.61 
+            text = "ङ" 
+        intervals [7]:
+            xmin = 0.61 
+            xmax = 0.66 
+            text = "ट" 
+        intervals [8]:
+            xmin = 0.66 
+            xmax = 0.87 
+            text = "न" 
+        intervals [9]:
+            xmin = 0.87 
+            xmax = 0.92 
+            text = "ड" 
+        intervals [10]:
+            xmin = 0.92 
+            xmax = 0.98 
+            text = "ि" 
+        intervals [11]:
+            xmin = 0.98 
+            xmax = 1.11 
+            text = "स" 
+        intervals [12]:
+            xmin = 1.11 
+            xmax = 1.24 
+            text = "ी" 
+        intervals [13]:
+            xmin = 1.24 
+            xmax = 1.3 
+            text = "क" 
+        intervals [14]:
+            xmin = 1.3 
+            xmax = 1.5 
+            text = "ो" 
+        intervals [15]:
+            xmin = 1.5 
+            xmax = 1.53 
+            text = "" 
+        intervals [16]:
+            xmin = 1.53 
+            xmax = 1.64 
+            text = "उ" 
+        intervals [17]:
+            xmin = 1.64 
+            xmax = 1.8 
+            text = "च" 
+        intervals [18]:
+            xmin = 1.8 
+            xmax = 1.81 
+            text = "्" 
+        intervals [19]:
+            xmin = 1.81 
+            xmax = 1.84 
+            text = "च" 
+        intervals [20]:
+            xmin = 1.84 
+            xmax = 2.02 
+            text = "व" 
+        intervals [21]:
+            xmin = 2.02 
+            xmax = 2.16 
+            text = "ृ" 
+        intervals [22]:
+            xmin = 2.16 
+            xmax = 2.19 
+            text = "द" 
+        intervals [23]:
+            xmin = 2.19 
+            xmax = 2.2 
+            text = "्" 
+        intervals [24]:
+            xmin = 2.2 
+            xmax = 2.24 
+            text = "ध" 
+        intervals [25]:
+            xmin = 2.24 
+            xmax = 2.36 
+            text = "ि" 
+        intervals [26]:
+            xmin = 2.36 
+            xmax = 2.45 
+            text = "भ" 
+        intervals [27]:
+            xmin = 2.45 
+            xmax = 2.66 
+            text = "व" 
+        intervals [28]:
+            xmin = 2.66 
+            xmax = 2.81 
+            text = "न" 
+        intervals [29]:
+            xmin = 2.81 
+            xmax = 3.029333 
+            text = "" 

@@ -1,0 +1,316 @@
+"""
+Verification script for Nepali FastSpeech2 preprocessing
+Checks if all preprocessed files are valid and consistent
+"""
+
+import os
+import json
+import numpy as np
+import argparse
+from tqdm import tqdm
+
+
+def verify_single_file(basename, data_dir):
+    """Verify a single preprocessed file"""
+    errors = []
+    warnings = []
+    
+    # Check if all files exist
+    duration_path = f"{data_dir}/duration/{basename}.npy"
+    pitch_path = f"{data_dir}/pitch/{basename}.npy"
+    energy_path = f"{data_dir}/energy/{basename}.npy"
+    mel_path = f"{data_dir}/mel/{basename}.npy"
+    
+    files = {
+        "duration": duration_path,
+        "pitch": pitch_path,
+        "energy": energy_path,
+        "mel": mel_path
+    }
+    
+    for name, path in files.items():
+        if not os.path.exists(path):
+            errors.append(f"Missing {name} file")
+            return errors, warnings
+    
+    try:
+        # Load files
+        duration = np.load(duration_path)
+        pitch = np.load(pitch_path)
+        energy = np.load(energy_path)
+        mel = np.load(mel_path)
+        
+        # Check shapes
+        if len(mel.shape) != 2:
+            errors.append(f"Mel shape should be 2D, got {mel.shape}")
+        
+        if len(duration.shape) != 1:
+            errors.append(f"Duration shape should be 1D, got {duration.shape}")
+        
+        # Check duration sum matches mel length
+        duration_sum = np.sum(duration)
+        mel_len = len(mel)
+        
+        if duration_sum != mel_len:
+            diff = abs(duration_sum - mel_len)
+            if diff > 5:
+                errors.append(f"Duration sum {duration_sum} != mel length {mel_len} (diff: {diff})")
+            else:
+                warnings.append(f"Small duration mismatch: {duration_sum} vs {mel_len} (diff: {diff})")
+        
+        # Check if pitch, energy, mel have same length
+        if not (len(pitch) == len(energy) == len(mel)):
+            errors.append(f"Length mismatch: pitch={len(pitch)}, energy={len(energy)}, mel={len(mel)}")
+        
+        # Check for NaN or Inf
+        if np.any(np.isnan(mel)) or np.any(np.isinf(mel)):
+            errors.append("Mel contains NaN or Inf")
+        
+        if np.any(np.isnan(pitch)) or np.any(np.isinf(pitch)):
+            errors.append("Pitch contains NaN or Inf")
+        
+        if np.any(np.isnan(energy)) or np.any(np.isinf(energy)):
+            errors.append("Energy contains NaN or Inf")
+        
+        # Check duration values
+        if np.any(duration <= 0):
+            errors.append("Duration contains non-positive values")
+        
+        # Check pitch values (should be positive or zero for unvoiced)
+        if np.any(pitch < 0):
+            errors.append("Pitch contains negative values")
+        
+        # Count voiced frames
+        voiced_ratio = np.sum(pitch > 0) / len(pitch)
+        if voiced_ratio < 0.3:
+            warnings.append(f"Low voiced ratio: {voiced_ratio:.2%}")
+        
+    except Exception as e:
+        errors.append(f"Error loading files: {str(e)}")
+    
+    return errors, warnings
+
+
+def verify_all(data_dir):
+    """Verify all preprocessed files"""
+    print(f"Verifying preprocessed data in: {data_dir}\n")
+    
+    # Check if required files exist
+    required_files = ["metadata.json", "stats.json", "train.txt", "val.txt", "symbols.txt"]
+    missing_files = []
+    
+    for file in required_files:
+        path = f"{data_dir}/{file}"
+        if not os.path.exists(path):
+            missing_files.append(file)
+    
+    if missing_files:
+        print("❌ Missing required files:")
+        for file in missing_files:
+            print(f"   - {file}")
+        return
+    
+    print("✓ All required files present")
+    
+    # Load metadata
+    with open(f"{data_dir}/metadata.json") as f:
+        metadata = json.load(f)
+    
+    print(f"✓ Found {len(metadata)} utterances in metadata\n")
+    
+    # Load statistics
+    with open(f"{data_dir}/stats.json") as f:
+        stats = json.load(f)
+    
+    print("Statistics:")
+    print(f"  Pitch:  min={stats['pitch']['min']:.2f}, max={stats['pitch']['max']:.2f}, "
+          f"mean={stats['pitch']['mean']:.2f}, std={stats['pitch']['std']:.2f}")
+    print(f"  Energy: min={stats['energy']['min']:.2f}, max={stats['energy']['max']:.2f}, "
+          f"mean={stats['energy']['mean']:.2f}, std={stats['energy']['std']:.2f}")
+    print()
+    
+    # Load symbols
+    with open(f"{data_dir}/symbols.txt") as f:
+        symbols = [line.strip() for line in f]
+    
+    print(f"✓ Found {len(symbols)} symbols (including special tokens)\n")
+    
+    # Verify train/val filelists
+    with open(f"{data_dir}/train.txt") as f:
+        train_lines = f.readlines()
+    with open(f"{data_dir}/val.txt") as f:
+        val_lines = f.readlines()
+    
+    print(f"✓ Train set: {len(train_lines)} utterances")
+    print(f"✓ Val set: {len(val_lines)} utterances")
+    print(f"✓ Total: {len(train_lines) + len(val_lines)} utterances\n")
+    
+    # Verify each file
+    print("Verifying individual files...")
+    errors_count = 0
+    warnings_count = 0
+    error_files = []
+    
+    for item in tqdm(metadata):
+        basename = item["basename"]
+        errors, warnings = verify_single_file(basename, data_dir)
+        
+        if errors:
+            errors_count += len(errors)
+            error_files.append((basename, errors, warnings))
+        elif warnings:
+            warnings_count += len(warnings)
+    
+    # Print results
+    print("\n" + "="*60)
+    print("VERIFICATION RESULTS")
+    print("="*60)
+    
+    if errors_count == 0:
+        print("✅ All files verified successfully!")
+    else:
+        print(f"❌ Found {errors_count} errors in {len(error_files)} files")
+        print(f"⚠️  Found {warnings_count} warnings")
+        
+        print("\nFiles with errors:")
+        for basename, errors, warnings in error_files[:10]:  # Show first 10
+            print(f"\n  {basename}:")
+            for error in errors:
+                print(f"    ❌ {error}")
+            for warning in warnings:
+                print(f"    ⚠️  {warning}")
+        
+        if len(error_files) > 10:
+            print(f"\n  ... and {len(error_files) - 10} more files with errors")
+    
+    # Summary statistics
+    print("\n" + "="*60)
+    print("SUMMARY")
+    print("="*60)
+    
+    total_frames = sum(item["n_frames"] for item in metadata)
+    avg_frames = total_frames / len(metadata)
+    total_duration_seconds = total_frames * 256 / 22050  # hop_length / sample_rate
+    
+    print(f"Total utterances: {len(metadata)}")
+    print(f"Total frames: {total_frames:,}")
+    print(f"Average frames per utterance: {avg_frames:.1f}")
+    print(f"Total audio duration: {total_duration_seconds/60:.1f} minutes")
+    print(f"Average utterance duration: {total_duration_seconds/len(metadata):.2f} seconds")
+    
+    # Check disk usage
+    disk_usage = {
+        "duration": 0,
+        "pitch": 0,
+        "energy": 0,
+        "mel": 0
+    }
+    
+    for item in metadata:
+        basename = item["basename"]
+        for feature in disk_usage.keys():
+            path = f"{data_dir}/{feature}/{basename}.npy"
+            if os.path.exists(path):
+                disk_usage[feature] += os.path.getsize(path)
+    
+    total_size = sum(disk_usage.values())
+    print(f"\nDisk usage:")
+    for feature, size in disk_usage.items():
+        print(f"  {feature}: {size/(1024*1024):.1f} MB ({size/total_size*100:.1f}%)")
+    print(f"  Total: {total_size/(1024*1024):.1f} MB")
+    
+    print("\n" + "="*60)
+    
+    if errors_count == 0:
+        print("\n✅ Preprocessing verification PASSED!")
+        print("\nYou can now proceed to training:")
+        print("  python train.py --config your_config.yaml")
+    else:
+        print("\n❌ Preprocessing verification FAILED!")
+        print("\nPlease fix the errors above before training.")
+        print("You may need to re-run preprocessing for failed files.")
+
+
+def verify_sample(data_dir, basename):
+    """Verify and print details of a specific sample"""
+    print(f"Verifying sample: {basename}\n")
+    
+    # Load all features
+    duration = np.load(f"{data_dir}/duration/{basename}.npy")
+    pitch = np.load(f"{data_dir}/pitch/{basename}.npy")
+    energy = np.load(f"{data_dir}/energy/{basename}.npy")
+    mel = np.load(f"{data_dir}/mel/{basename}.npy")
+    
+    # Find phonemes from train.txt or val.txt
+    phonemes = None
+    for filelist in ["train.txt", "val.txt"]:
+        with open(f"{data_dir}/{filelist}") as f:
+            for line in f:
+                if line.startswith(basename + "|"):
+                    phonemes = line.strip().split("|")[1]
+                    break
+        if phonemes:
+            break
+    
+    print(f"Basename: {basename}")
+    print(f"Phonemes: {phonemes}")
+    print(f"\nShapes:")
+    print(f"  Duration: {duration.shape} (n_phonemes)")
+    print(f"  Pitch: {pitch.shape} (n_frames)")
+    print(f"  Energy: {energy.shape} (n_frames)")
+    print(f"  Mel: {mel.shape} (n_frames, n_mels)")
+    
+    print(f"\nDuration:")
+    print(f"  Sum: {np.sum(duration)}")
+    print(f"  Values: {duration[:10]}..." if len(duration) > 10 else f"  Values: {duration}")
+    
+    print(f"\nPitch:")
+    print(f"  Min: {np.min(pitch):.2f}")
+    print(f"  Max: {np.max(pitch):.2f}")
+    print(f"  Mean (voiced): {np.mean(pitch[pitch > 0]):.2f}")
+    print(f"  Voiced ratio: {np.sum(pitch > 0) / len(pitch):.2%}")
+    
+    print(f"\nEnergy:")
+    print(f"  Min: {np.min(energy):.2f}")
+    print(f"  Max: {np.max(energy):.2f}")
+    print(f"  Mean: {np.mean(energy):.2f}")
+    
+    print(f"\nMel:")
+    print(f"  Min: {np.min(mel):.2f}")
+    print(f"  Max: {np.max(mel):.2f}")
+    print(f"  Mean: {np.mean(mel):.2f}")
+    
+    # Verify consistency
+    errors, warnings = verify_single_file(basename, data_dir)
+    
+    if errors:
+        print("\n❌ Errors:")
+        for error in errors:
+            print(f"  - {error}")
+    
+    if warnings:
+        print("\n⚠️  Warnings:")
+        for warning in warnings:
+            print(f"  - {warning}")
+    
+    if not errors and not warnings:
+        print("\n✅ Sample is valid!")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Verify preprocessed Nepali FastSpeech2 data")
+    parser.add_argument("--data_dir", type=str, default="preprocessed_data/nepali",
+                        help="Directory containing preprocessed data")
+    parser.add_argument("--sample", type=str, default=None,
+                        help="Verify a specific sample (basename)")
+    
+    args = parser.parse_args()
+    
+    if args.sample:
+        verify_sample(args.data_dir, args.sample)
+    else:
+        verify_all(args.data_dir)
+
+
+if __name__ == "__main__":
+    main()
